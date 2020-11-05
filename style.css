@@ -6,7 +6,6 @@
     font-weight: bold;
 }
 body{
-    background: #736453;
     background: linear-gradient(90deg,#736453 0%, #f2f2f2 50%,#736453 100%);
 }
 h1{
@@ -48,17 +47,12 @@ hr{
     border: none;
     background-color:  #261201;
 }
-.first-row,
-.second-row,
-.third-row,
-.forth-row,
-.fifth-row,
-.sixth-row{
+.calc-row{
     display: flex;
     width: 100%;
     height: 65px;
 }
-.Calc__btn{
+.calc-btn{
     border:0.5px solid #736453;
     text-decoration: none;
     color: #261201 ;
@@ -76,34 +70,14 @@ hr{
     border: none;
     font-family: 'Montserrat', sans-serif;
 }
-#divide{
+.oper-btn{
     background-color:#261201;
     color: #F2F2F2;
     height: 65px;
     width: 25%;
 }
-#multiply{
-    background-color:#261201;
-    color: #F2F2F2;
-    height: 65px;
-    width: 25%;
-}
-#seven,
-#eight,
-#nine,
-#four,
-#five,
-#six,
-#one,
-#two,
-#three{
+.num-btn{
     background-color: #F2F2F2;
-    height: 65px;
-    width: 25%;
-}
-#minus{
-    background-color:#261201;
-    color: #F2F2F2;
     height: 65px;
     width: 25%;
 }
@@ -124,10 +98,7 @@ hr{
     height: 65px;
     width: 25%;
 }
-#I-U,
-#U-I,
-#I-E,
-#E-I{
+.conv-btn{
     padding: 3px;
     font-size: 20px;
     color: #261201;
@@ -148,16 +119,11 @@ hr{
         height: 400px;
     }
     .display,
-    .first-row,
-    .second-row,
-    .third-row,
-    .forth-row,
-    .fifth-row,
-    .sixth-row
+    .calc-row
     {
         height: 57px ;
     }
-    .Calc__btn{
+    .calc-btn{
         height: inherit !important;
     }
     #plus{
