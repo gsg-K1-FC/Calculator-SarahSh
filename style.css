@@ -33,15 +33,14 @@ h1{
 }
 .display{
     background-color:#F2F2F2;
-    height: 62px;
+    height: 70px;
     width: 100%;
     text-align: end;
     font-size: 45px;
     color: #404040;
+    border: none;
 }
-p{
-    margin:2% ;
-}
+
 hr{
     height: 1px;
     border: none;
@@ -62,10 +61,10 @@ hr{
     cursor: pointer;
     outline: none;
 }
-#clear{
+.clear{
     background-color:#590202 ;
     color: #F2F2F2;
-    height: 65px;
+    height: 70px;
     width: 50%;
     border: none;
     font-family: 'Montserrat', sans-serif;
@@ -107,7 +106,7 @@ hr{
     width: 25%;
 }
 @media only screen and (max-width: 600px){
-    h1, p{
+    h1, input{
         font-size:  30px !important;
     }
     *{
