@@ -1,47 +1,97 @@
-let buttons = document.querySelector(".buttons")
-const numbers={
-    displayNumber : "0",
-};
-function updateDisplay(){
-    let Calcdisplay = document.querySelector(".display");
-    Calcdisplay.value = numbers.displayNumber; 
-    
-};
-buttons.addEventListener("click",(event)=>{
-    const {target} = event ;
-    numbers.displayNumber= target.innerText;
-    updateDisplay();
-});
-function operator(firstNo,secondNo,opperation){
-
-}
+let buttons = document.querySelector(".buttons");
+let calcDisplay = document.querySelector(".display");
 const calculator = {
-    displayNumber: '0',
     firstNum: null,
-    waitingForSecondOperand: false,
+    secondNum: null,
     operator: null,
 };
-function inputDigit(digit){
-    if (calculator. waitingForSecondOperand === true){
-        calculator.displayNumber = digit;
-        calculator.waitingForSecondOperand = false;
-    } else if(Calcdisplay.value.length<15){
-        calculator.displayNumber = (displayNumber === '0') ? digit : displayNumber+digit;
-    }else 
-    return false;
+function display(number){            
+        calcDisplay.value = parseInt(calcDisplay.value + number);
 }
-function handleOperator(nextOperator){
-    
+function Operate(opp){
+    if(calculator.firstNum===null){
+        calculator.operator=null;
+        return false;
+        } 
+    else if (calculator.operator === null || (calculator.operator!== null && calculator.secondNum===null))
+        calculator.operator = opp;
+    else if(calculator.operator!==null && calculator.secondNum!==null)
+        {
+            calculator.operator = opp;
+            if(opp ==="+"){
+                calculator.firstNum = calculator.firstNum + calculator.secondNum;
+            } else if(opp ==="-"){
+                calculator.firstNum -= calculator.secondNum;
+            } else if(opp ==="*"){
+                calculator.firstNum *= calculator.secondNum;
+            }else if(opp ==="/"){
+                calculator.firstNum /= calculator.secondNum;
+            }
+            calculator.secondNum = null;
+            calcDisplay.value = parseInt(calculator.firstNum);
+        } 
+}
+function equals(){
+    if(calculator.firstNum!==null && calculator.secondNum!==null){
+        Operate(calculator.operator)
+        calculator.operator=null;
+    }
+    else if(calculator.operator!==null && calculator.secondNum ===null || calculator.firstNum===null)
+        alert("ERROR!!");
+    else if(calculator.operator==="/" && calculator.secondNum==="0")
+        alert("Cannot divide by zero!!");
+}
+function currencyConvert(currency){
+    if(calculator.firstNum===null)
+        return false;
+    else if(calculator.secondNum !== null){
+        equals();
+        currencyConvert(currency);
+    }
+    else
+     if (calculator.operator===null || (calculator.secondNum===null && calculator.operator!==null)){
+        calcDisplay.value=0;
+        if(currency ==="ILS/USD")
+            display(parsefloat(calculator.firstNum *= .30));
+        else if(currency ==="USD/ILS")
+            display(parsefloat(calculator.firstNum *= 3.37));
+        else if(currency ==="ILS/EUR")
+            display(parsefloat(calculator.firstNum *= .25));
+        else if(currency ==="EUR/ILS")
+            display(parsefloat(calculator.firstNum *= 4.01));
+    }
 }
 buttons.addEventListener("click", (event) => {
     const{target}=event;
-    if(target.classList.contains("operator")){
-        handleOperator(target.innerText);
-        updateDisplay();
-    }
-    if (target.classList.contains("clear")){
-        return;
-    }
-    inputDigit(target.innerText)
-    updateDisplay();
+    if(target.classList.contains("num-btn") || target.id=="zero"){
+        if(calcDisplay.value.length<14){
+            if (calculator.secondNum !== null ){
+                display(target.innerText);
+                calculator.secondNum =calcDisplay.value;
+            } else if (calculator.operator !== null && calculator.secondNum===null){
+                calcDisplay.value=0;
+                display(target.innerText);
+                calculator.secondNum =calcDisplay.value;
+            }
+        else if(calculator.operator==null){
+                display(target.innerText);
+                calculator.fristNum =calcDisplay.value;
+        }
+    } else return false;
+}
+    else if (target.classList.contains("operator")){
+        calculator.operator= target.innerText;
+        Operate(calculator.operator);
+        }
+    else if (target.id == "equals")
+        Equals();
+    else if (target.classList.contains("clear")){
+        calculator.firstNum=null;
+        calculator.secondNum=null;
+        calculator.operator=null;
+        calcDisplay.value= 0;
+        }
+    else if (target.id == "conv-btn")
+        currencyConvert(target.innerText);
+    console.log(calculator);
 });
