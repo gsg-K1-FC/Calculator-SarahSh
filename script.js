@@ -19,16 +19,19 @@ function Operate(opp){
         {
             calculator.operator = opp;
             if(opp ==="+"){
-                calculator.firstNum = calculator.firstNum + calculator.secondNum;
+                calculator.firstNum = Number(calculator.firstNum) + Number(calculator.secondNum);
             } else if(opp ==="-"){
                 calculator.firstNum -= calculator.secondNum;
-            } else if(opp ==="*"){
+            } else if(opp ==="X"){
                 calculator.firstNum *= calculator.secondNum;
             }else if(opp ==="/"){
-                calculator.firstNum /= calculator.secondNum;
+                if(calculator.operator==="/" && calculator.secondNum==="0")
+                    alert("Cannot divide by zero!!");
+                else 
+                    calculator.firstNum /= calculator.secondNum;
             }
             calculator.secondNum = null;
-            calcDisplay.value = parseInt(calculator.firstNum);
+            calcDisplay.value = calculator.firstNum;
         } 
 }
 function equals(){
@@ -38,8 +41,7 @@ function equals(){
     }
     else if(calculator.operator!==null && calculator.secondNum ===null || calculator.firstNum===null)
         alert("ERROR!!");
-    else if(calculator.operator==="/" && calculator.secondNum==="0")
-        alert("Cannot divide by zero!!");
+    
 }
 function currencyConvert(currency){
     if(calculator.firstNum===null)
@@ -48,8 +50,7 @@ function currencyConvert(currency){
         equals();
         currencyConvert(currency);
     }
-    else
-     if (calculator.operator===null || (calculator.secondNum===null && calculator.operator!==null)){
+    else if (calculator.operator===null || (calculator.secondNum===null && calculator.operator!==null)){
         calcDisplay.value=0;
         if(currency ==="ILS/USD")
             display(parsefloat(calculator.firstNum *= .30));
@@ -75,8 +76,12 @@ buttons.addEventListener("click", (event) => {
             }
         else if(calculator.operator==null){
                 display(target.innerText);
-                calculator.fristNum =calcDisplay.value;
+                calculator.firstNum =calcDisplay.value;
         }
+    } else if(calcDisplay.value.length>=14 && calculator.operator!==null && calculator.secondNum===null){
+        calcDisplay.value=0;
+        display(target.innerText);
+        calculator.secondNum =calcDisplay.value;
     } else return false;
 }
     else if (target.classList.contains("operator")){
@@ -84,7 +89,7 @@ buttons.addEventListener("click", (event) => {
         Operate(calculator.operator);
         }
     else if (target.id == "equals")
-        Equals();
+        equals();
     else if (target.classList.contains("clear")){
         calculator.firstNum=null;
         calculator.secondNum=null;
