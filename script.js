@@ -51,15 +51,15 @@ function currencyConvert(currency){
         currencyConvert(currency);
     }
     else if (calculator.operator===null || (calculator.secondNum===null && calculator.operator!==null)){
-        calcDisplay.value=0;
+        calculator.operator=null;
         if(currency ==="ILS/USD")
-            display(parsefloat(calculator.firstNum *= .30));
+            calcDisplay.value = calculator.firstNum *= 0.29550;
         else if(currency ==="USD/ILS")
-            display(parsefloat(calculator.firstNum *= 3.37));
+            calcDisplay.value = calculator.firstNum *= 3.36476;
         else if(currency ==="ILS/EUR")
-            display(parsefloat(calculator.firstNum *= .25));
+            calcDisplay.value = calculator.firstNum *= 0.24880;
         else if(currency ==="EUR/ILS")
-            display(parsefloat(calculator.firstNum *= 4.01));
+            calcDisplay.value = calculator.firstNum *= 3.99493;
     }
 }
 buttons.addEventListener("click", (event) => {
@@ -96,7 +96,7 @@ buttons.addEventListener("click", (event) => {
         calculator.operator=null;
         calcDisplay.value= 0;
         }
-    else if (target.id == "conv-btn")
+    else if (target.classList.contains("conv-btn"))
         currencyConvert(target.innerText);
     console.log(calculator);
 });
