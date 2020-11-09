@@ -98,5 +98,4 @@ buttons.addEventListener("click", (event) => {
         }
     else if (target.classList.contains("conv-btn"))
         currencyConvert(target.innerText);
-    console.log(calculator);
 });
