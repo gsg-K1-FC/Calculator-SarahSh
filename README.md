@@ -9,7 +9,6 @@ The project is done as a practical application for javascript learning ,and bett
 ## what ?
 The site is an Online Calculator Site that can do the basic operations (+,-,/,x), and convert a number that user inputs into 3 different currencies.
 
-
 ## How ?
 The site is done by [Sarah Alsharif](https://github.com/sarah-alsharif0) in steps as follows:
 - Drew a sketch as a prototype for the site.
@@ -17,3 +16,6 @@ The site is done by [Sarah Alsharif](https://github.com/sarah-alsharif0) in step
 - Used html to create the basic structure of the calculator.
 - Used css to style the calculator.
 - Used DOM to implement the functionality of the operations.
+
+## The final design.
+[Calculator.](https://gsg-k1-fc.github.io/Calculator-SarahSh/)
